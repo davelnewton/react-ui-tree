@@ -1,8 +1,9 @@
 var cx = require('classnames');
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Tree = require('../lib/react-ui-tree.js');
 var tree = require('./tree');
+
+import ReactUiTree from '../lib/react-ui-tree'
 
 require('../lib/react-ui-tree.less');
 require('./theme.less');
@@ -36,7 +37,7 @@ var App = React.createClass({
     return (
       <div className="app">
         <div className="tree">
-          <Tree
+          <ReactUiTree
             paddingLeft={20}
             tree={this.state.tree}
             onChange={this.handleChange}

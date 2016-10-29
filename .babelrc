@@ -1,3 +1,10 @@
 {
-	"presets": ["es2015", "react"]
+  "presets": [
+    "es2015", "react", "stage-0"
+  ],
+
+  "plugins": [
+    "babel-plugin-webpack-alias",
+    "transform-decorators-legacy"
+  ]
 }

@@ -4,10 +4,10 @@ module.exports = {
     module: 'dist',
     collapsed: true,
     children: [{
-      module: 'node.js',
+      module: 'NODE JS',
       leaf: true
     }, {
-      module: 'react-ui-tree.css',
+      module: 'react-ui-tree.css !!!',
       leaf: true
     }, {
       module: 'react-ui-tree.js',
