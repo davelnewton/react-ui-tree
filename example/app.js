@@ -1,7 +1,7 @@
-var cx = require('classnames');
-var React = require('react');
-var ReactDOM = require('react-dom');
-var tree = require('./tree');
+import cx from 'classnames'
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import tree from './tree'
 
 import ReactUiTree from '../lib/react-ui-tree'
 
@@ -9,65 +9,92 @@ require('../lib/react-ui-tree.less');
 require('./theme.less');
 require('./app.less');
 
-var App = React.createClass({
-  getInitialState() {
-    return {
-      active: null,
-      tree: tree
-    };
-  },
+const SimpleSpan = (props) => {
+  const { node, active, onClick } = props
+      , className = cx('node', { 'is-active': active })
 
-  renderNode(node) {
-    return (
-      <span className={cx('node', {
-        'is-active': node === this.state.active
-        })} onClick={this.onClickNode.bind(null, node)}>
-        {node.module}
-      </span>
-    );
-  },
+  return (
+    <span className={className} onClick={onClick}>
+      {node.module}
+    </span>
+  )
+}
 
-  onClickNode(node) {
-    this.setState({
-      active: node
-    });
-  },
+const SimpleSpan2 = (props) => {
+  const { node, active, onClick } = props
+      , className = cx('node2', { 'is-active': active })
 
-  render() {
-    return (
-      <div className="app">
-        <div className="tree">
-          <ReactUiTree
-            paddingLeft={20}
-            tree={this.state.tree}
-            onChange={this.handleChange}
-            isNodeCollapsed={this.isNodeCollapsed}
-            renderNode={this.renderNode}
-          />
-        </div>
-        <div className="inspector">
-          <button onClick={this.updateTree}>update tree</button>
-          <pre>
-          {JSON.stringify(this.state.tree, null, '  ')}
-          </pre>
-         </div>
-      </div>
-    );
-  },
+  return (
+    <span className={className} onClick={onClick}>
+      {node.module}
+    </span>
+  )
+}
 
-  handleChange(tree) {
-    this.setState({
-      tree: tree
-    });
-  },
+class App extends Component {
+  state = { tree, active: null }
 
-  updateTree() {
-    var tree = this.state.tree;
-    tree.children.push({module: 'test'});
-    this.setState({
-      tree: tree
-    });
+  onClickNode = (node) => {
+    this.setState({ active: node })
   }
-});
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+  renderNode = (node) => {
+    const activeNode = this.state.active
+        , isNodeActive = node === activeNode
+        , clickHandler = this.onClickNode.bind(null, node)
+        , nodeProps = {
+            node,
+            onClick: clickHandler,
+            active:  isNodeActive
+          }
+
+    let Component
+
+    switch (node.component) {
+      case 'SimpleSpan':  Component = SimpleSpan; break;
+      case 'SimpleSpan2': Component = SimpleSpan2; break;
+      default: Component = SimpleSpan
+    }
+
+    // return (
+    //   <SimpleSpan
+    //   node={node}
+    //   onClick={clickHandler}
+    //   active={isNodeActive}
+    //   />
+    // )
+    return <Component {...nodeProps} />
+  }
+
+  render = () =>
+    <div className="app">
+      <div className="tree">
+        <ReactUiTree
+          paddingLeft={20}
+          tree={this.state.tree}
+          onChange={this.handleChange}
+          isNodeCollapsed={this.isNodeCollapsed}
+          renderNode={this.renderNode}
+        />
+      </div>
+
+      <div className="inspector">
+        <button onClick={this.updateTree}>Add Node to Tree</button>
+
+        <pre>
+          {JSON.stringify(this.state.tree, null, 2)}
+        </pre>
+       </div>
+    </div>
+
+  handleChange = (tree) => this.setState({ tree })
+
+  updateTree = () => {
+    var { tree } = this.state
+
+    tree.children.push({ module: 'test' })
+    this.setState({ tree })
+  }
+}
+
+ReactDOM.render(<App/>, document.getElementById('app'))

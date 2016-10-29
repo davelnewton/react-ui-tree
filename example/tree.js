@@ -1,68 +1,54 @@
-module.exports = {
-  module: 'react-ui-tree',
-  children: [{
-    module: 'dist',
-    collapsed: true,
-    children: [{
-      module: 'NODE JS',
-      leaf: true
-    }, {
-      module: 'react-ui-tree.css !!!',
-      leaf: true
-    }, {
-      module: 'react-ui-tree.js',
-      leaf: true
-    }, {
-      module: 'tree.js',
-      leaf: true
-    }]
-  }, {
-    module: 'example',
-    children: [{
-      module: 'app.js',
-      leaf: true
-    }, {
-      module: 'app.less',
-      leaf: true
-    }, {
-      module: 'index.html',
-      leaf: true
-    }]
-  }, {
-    module: 'lib',
-    children: [{
-      module: 'node.js',
-      leaf: true
-    }, {
-      module: 'react-ui-tree.js',
-      leaf: true
-    }, {
-      module: 'react-ui-tree.less',
-      leaf: true
-    }, {
-      module: 'tree.js',
-      leaf: true
-    }]
-  }, {
-    module: '.gitiignore',
-    leaf: true
-  }, {
-    module: 'index.js',
-    leaf: true
-  }, {
-    module: 'LICENSE',
-    leaf: true
-  }, {
-    module: 'Makefile',
-    leaf: true
-  }, {
-    module: 'package.json',
-    leaf: true
-  }, {
-    module: 'README.md',
-    leaf: true
-  }, {
-    module: 'webpack.config.js',
-    leaf: true
-  }]
+import S from 'string'
+
+const simpleModule = (name, isLeaf, type) => {
+  const component = S(name).endsWith('.js') ? 'SimpleSpan2' : 'SimpleSpan'
+
+  return {
+    component,
+    module: name,
+    leaf:   isLeaf
+  }
 }
+
+const tree = {
+  module: 'react-ui-tree',
+  children: [
+    {
+      module: 'dist',
+      collapsed: true,
+      children: [
+        simpleModule('NodeJS', true),
+        simpleModule('react-ui-tree.css', true),
+        simpleModule('react-ui-tree.js', true),
+        simpleModule('tree.js', true)
+      ]
+    },
+    {
+      module: 'example',
+      children: [
+        simpleModule('app.js', true),
+        simpleModule('app.less', true),
+        simpleModule('index.html', true)
+      ]
+    },
+    {
+      module: 'lib',
+      children: [
+        simpleModule('node.js', true),
+        simpleModule('react-ui-tree.js', true),
+        simpleModule('react-ui-tree.less', true),
+        simpleModule('tree.js', true)
+      ]
+    },
+
+    simpleModule('.gitiignore', true),
+    simpleModule('index.js', true),
+    simpleModule('LICENSE', true),
+    simpleModule('Makefile', true),
+    simpleModule('package.json', true),
+    simpleModule('README.md', true),
+    simpleModule('webpack.config.js', true)
+  ]
+}
+
+export default tree

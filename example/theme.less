@@ -1,11 +1,11 @@
 .tree {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 300px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  position:         fixed;
+  top:              0;
+  left:             0;
+  bottom:           0;
+  width:            300px;
+  overflow-x:       hidden;
+  overflow-y:       auto;
   background-color: #21252B;
 }
 
@@ -15,15 +15,26 @@
   }
 
   .inner {
-    color: #9DA5B4;
-    font-size: 12px;
+    color:       #9DA5B4;
+    font-size:   12px;
     font-family: Menlo;
   }
 
   .node {
     display: inline-block;
-    width: 100%;
+    width:   100%;
     padding: 4px 5px;
+
+    &.is-active {
+      background-color: #31363F;
+    }
+  }
+
+  .node2 {
+    display:          inline-block;
+    width:            100%;
+    padding:          4px 5px;
+    background-color: #404040;
 
     &.is-active {
       background-color: #31363F;
