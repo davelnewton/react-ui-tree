@@ -1,8 +1,19 @@
 {
-  "name": "react-ui-tree",
-  "version": "2.5.0",
+  "name":        "react-ui-tree",
+  "version":     "2.5.0",
   "description": "React tree component",
-  "main": "index.js",
+  "author":      "Wang Zuo, Dave Newton",
+  "license":     "MIT",
+  "homepage":    "https://github.com/davelnewton/react-ui-tree",
+
+  "main":        "index.js",
+
+  "keywords": [
+    "react",
+    "react-component",
+    "tree"
+  ],
+
   "scripts": {
     "build":  "make",
     "deploy": "npm run build && github-pages-deploy",
@@ -10,24 +21,22 @@
     "test":   "mocha",
     "watch":  "webpack --watch"
   },
-  "github-pages-deploy": {
-    "src": "example"
-  },
+
   "repository": {
     "type": "git",
-    "url": "https://github.com/pqx/react-ui-tree.git"
+    "url":  "https://github.com/davelnewton/react-ui-tree.git"
   },
-  "keywords": [
-    "react",
-    "react-component",
-    "tree"
-  ],
-  "author": "Wang Zuo",
-  "license": "MIT",
+
   "bugs": {
-    "url": "https://github.com/pqx/react-ui-tree/issues"
+    "url": "https://github.com/davelnewton/react-ui-tree/issues"
   },
-  "homepage": "https://github.com/pqx/react-ui-tree",
+
+  "dependencies": {
+    "classnames": "^2.2.3",
+    "js-tree":    "^1.1.0",
+    "string":     "^3.3.1"
+  },
+
   "peerDependencies": {
     "react":                             "15.3.2",
     "react-addons-css-transition-group": "15.3.2",
@@ -36,8 +45,8 @@
     "classnames":                        "^2.2.3",
     "js-tree":                           "^1.1.0",
     "string":                            "^3.3.1"
-
   },
+
   "devDependencies": {
     "app-module-path":                           "^1.1.0",
     "babel-core":                                "^6.13.2",
@@ -93,10 +102,5 @@
 
     "less":        "^2.5.0",
     "less-loader": "^2.2.2"
-  },
-  "dependencies": {
-    "classnames": "^2.2.3",
-    "js-tree":    "^1.1.0",
-    "string":     "^3.3.1"
   }
 }

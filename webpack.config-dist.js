@@ -1,10 +1,14 @@
+var path = require('path')
+
 module.exports = {
-  entry: './example/app.js',
+  entry: './lib/index.js',
 
   output: {
-    path:       __dirname + '/example',
-    filename:   'bundle.js',
-    publicPath: '/example/',
+    path:           __dirname + '/dist',
+    filename:       'bundle.js',
+    libraryName:    'react-ui-tree',
+    libraryTarget:  'umd',
+    umdNamedDefine: true
   },
 
   module: {
@@ -37,6 +41,11 @@ module.exports = {
         loader: 'style-loader!css-loader!less-loader'
       }
     ]
+  },
+
+  resolve: {
+    root:       path.resolve('./lib'),
+    extensions: ['', '.js']
   },
 
   externals: {
