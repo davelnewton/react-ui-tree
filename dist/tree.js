@@ -1,7 +1,16 @@
 'use strict';
 
-var Tree = require('js-tree');
-var proto = Tree.prototype;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jsTree = require('js-tree');
+
+var _jsTree2 = _interopRequireDefault(_jsTree);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var proto = _jsTree2.default.prototype;
 
 proto.updateNodesPosition = function () {
   var top = 1;
@@ -18,8 +27,10 @@ proto.updateNodesPosition = function () {
 
   function walk(children, parent, left, collapsed) {
     var height = 1;
+
     children.forEach(function (id) {
       var node = self.getIndex(id);
+
       if (collapsed) {
         node.top = null;
         node.left = null;
@@ -49,13 +60,13 @@ proto.move = function (fromId, toId, placement) {
 
   if (placement === 'before') index = this.insertBefore(obj, toId);else if (placement === 'after') index = this.insertAfter(obj, toId);else if (placement === 'prepend') index = this.prepend(obj, toId);else if (placement === 'append') index = this.append(obj, toId);
 
-  // todo: perf
   this.updateNodesPosition();
   return index;
 };
 
 proto.getNodeByTop = function (top) {
   var indexes = this.indexes;
+
   for (var id in indexes) {
     if (indexes.hasOwnProperty(id)) {
       if (indexes[id].top === top) return indexes[id];
@@ -63,4 +74,4 @@ proto.getNodeByTop = function (top) {
   }
 };
 
-module.exports = Tree;
+exports.default = _jsTree2.default;
