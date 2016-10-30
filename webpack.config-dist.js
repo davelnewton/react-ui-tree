@@ -5,7 +5,7 @@ module.exports = {
 
   output: {
     path:           __dirname + '/dist',
-    filename:       'bundle.js',
+    filename:       'react-ui-tree.js',
     libraryName:    'react-ui-tree',
     libraryTarget:  'umd',
     umdNamedDefine: true
